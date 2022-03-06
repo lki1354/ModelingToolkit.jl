@@ -43,6 +43,7 @@ get_unit(op::Differential, args) = get_unit(args[1]) / get_unit(op.x)
 get_unit(op::Difference, args) =   get_unit(args[1]) / get_unit(op.t)
 get_unit(op::typeof(getindex),args) = get_unit(args[1])
 get_unit(x::SciMLBase.NullParameters) = unitless
+get_unit(x::Connection) = unitless #todo: solve to get the unit and not unitless, 
 
 function get_unit(op,args) # Fallback
     result = op(1 .* get_unit.(args)...)
